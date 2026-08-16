@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+COMPOSE="docker compose -f compose.prod.yaml"
 PROJECT_PATH="$1"
 
 if [ -z "$PROJECT_PATH" ]; then
@@ -23,8 +23,8 @@ echo "⏳ Attente que tous les services deviennent 'healthy'..."
 MAX_WAIT=60
 i=0
 while [ $i -lt $MAX_WAIT ]; do
-  unhealthy=$(docker compose ps --filter "health=unhealthy" -q | wc -l)
-  starting=$(docker compose ps --filter "health=starting" -q | wc -l)
+  unhealthy=$($COMPOSE --filter "health=unhealthy" -q | wc -l)
+  starting=$($COMPOSE --filter "health=starting" -q | wc -l)
 
   if [ "$unhealthy" -eq 0 ] && [ "$starting" -eq 0 ]; then
     echo "✅ Tous les conteneurs sont 'healthy'."
