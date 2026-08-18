@@ -62,7 +62,10 @@ cd "$PROJECT_DIR"
 echo "==> Projet : $PROJECT_DIR"
 
 echo "==> Build / deploy"
-docker compose -f compose.prod.yaml up -d --build
+docker compose \
+    -f compose.prod.yaml up -d \
+     --build \
+     --remove-orphans
 
 echo "==> Nettoyage"
 docker image prune -f
