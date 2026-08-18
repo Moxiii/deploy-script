@@ -24,8 +24,8 @@ jobs:
           scp \
             -i ~/.ssh/id_ed25519 \
             -o StrictHostKeyChecking=no \
-            deploy.sh \
-            ${{ secrets.USER }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USER }}/web/infra/deploy.sh
+            deploys.sh \
+            ${{ secrets.USER }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USER }}/web/infra/deploys.sh
 
       - name: Make script executable
         run: |
@@ -33,4 +33,4 @@ jobs:
             -i ~/.ssh/id_ed25519 \
             -o StrictHostKeyChecking=no \
             ${{ secrets.USER }}@${{ secrets.SERVER_IP }} \
-            "chmod +x /home/${{ secrets.USER }}/web/infra/deploy.sh"
+            "chmod +x /home/${{ secrets.USER }}/web/infra/deploys.sh"
